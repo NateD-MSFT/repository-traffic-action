@@ -6,7 +6,10 @@ import requests
 
 
 def main():
-    repo_name = os.environ["GITHUB_REPOSITORY"]
+    if "ALTERNATE_GITHUB_REPOSITORY" in os.environ:
+        repo_name = os.environ["ALTERNATE_GITHUB_REPOSITORY"]
+    else:
+        repo_name = os.environ["GITHUB_REPOSITORY"]
     repo_stats = RepoStats(
         repo_name, os.environ["TRAFFIC_ACTION_TOKEN"])
 
